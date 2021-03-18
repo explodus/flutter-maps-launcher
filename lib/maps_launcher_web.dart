@@ -11,12 +11,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 /// A web implementation of the MapsLauncher plugin.
 class MapsLauncherWeb {
   static void registerWith(Registrar registrar) {
-    final MethodChannel channel = MethodChannel(
-      'maps_launcher',
-      const StandardMethodCodec(),
-      registrar.messenger,
-    );
-
+    final MethodChannel channel = MethodChannel('maps_launcher', const StandardMethodCodec(), registrar);
     final pluginInstance = MapsLauncherWeb();
     channel.setMethodCallHandler(pluginInstance.handleMethodCall);
   }
@@ -28,7 +23,6 @@ class MapsLauncherWeb {
     switch (call.method) {
       case 'getPlatformVersion':
         return getPlatformVersion();
-        break;
       default:
         throw PlatformException(
           code: 'Unimplemented',
